@@ -4,6 +4,8 @@ import com.adrianoribeiro.domain.Address;
 import com.adrianoribeiro.domain.Person;
 import com.adrianoribeiro.dto.PersonDto;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,13 +39,13 @@ public class PersonMapperTest {
 
         PersonDto dto = PersonMapper.INSTANCE.toDto(father);
 
+        assertNotNull(dto);
         assertEquals("Adriano Ribeiro", dto.getName());
         assertEquals("Street A, 23", dto.getAddress().getLine1());
 
         String address = "Canidelo, Vila Nova de Gaia, 4400-222";
         assertEquals(address, dto.getAddress().getLine2());
 
-        //Sometimes it will fail once HashSet don't ensure the order :)
         String dependents = "Júlia Ribeiro, Samuel Ribeiro";
         assertEquals(dependents, dto.getDependents());
     }
